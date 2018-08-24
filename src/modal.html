@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<!--
+    @ Chrome    43+
+    @ Firefox   40+
+    @ Opera     31+
+    @ Android   44+
+    @ Chrome for Android    44+
+-->
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+    <!-- External CSS -->
+    <link type="text/css" rel="stylesheet" href="css/miniui.min.css">
+    <link type="text/css" rel="stylesheet" href="css/font-awesome.min.css">
+    <link type="text/css" rel="stylesheet" href="css/simple-line-icons.css">
+
+    <title>modal - 模拟弹出窗口</title>
+</head>
+
+<body>
+
+    <div class="layout center">
+        <header>
+            <h1>modal - 模拟弹出窗口</h1>
+            <p>modal - 是一个基于JQuery的插件，可以在网页中模拟弹出窗口，该插件还提供了两个JQuery静态方法，分别用来模拟网页中的消息对话框和等待确认对话框。</p>
+        </header>
+        <section class="section">
+            <h2 class="section-head">modal - 文件引入方法</h2>
+            <h3>方法一</h3>
+            <p>直接引入三个文件，modal.css、jquery.js、modal.js</p>
+        <pre><code name="code" class="html">&lt;!--  步骤一：在 head 中引入 modal.css --&gt;
+&lt;link type="text/css" rel="stylesheet" href="modal.css"&gt;
+
+&lt;!--  步骤二：引入 JQuery --&gt;
+&lt;script type="text/javascript" src="jquery.js"&gt;&lt;/script&gt;
+
+&lt;!--  步骤二：引入 modal.js，确保JQuery在此之前已经引入 --&gt;
+&lt;script type="text/javascript" src="modal.js"&gt;&lt;/script&gt;</code></pre>
+            <h3>方法二</h3>
+            <p>使用 requareJS 加载，如果您的项目应用了 requareJS，建议使用此方法加载</p>
+<pre><code name="code" class="js">//  配置路径
+    require.config({
+        paths: {
+            jquery  :   'jquery.min',
+            modal  :   'modal'
+        }
+    });
+
+//  按照依赖关系加载 modal
+    require(['jquery','modal'],function($,modal){
+        //  --
+    })</code></pre>
+        </section>
+
+
+        <section class="section">
+            <h2 class="section-head">modal - 使用方法</h2>
+            <h3>示例一：模拟网页消息对话框。</h3>
+            <p><button class="button small green btn1">运行代码</button></p>
+        <pre><code name="code" class="js">/*
+ *
+ *  语法 - $.Alert(text);
+ *
+ ** 参数配置：
+ *      text - {string} 要弹出的消息
+ *
+*/
+    $.Alert("弹出一个消息对话框。");</code></pre>
+            <h3>示例二：模拟网页中的等待确认对话框</h3>
+            <p><button id="delbtn" class="button small red">运行代码</button></p>
+            <p>HTML 代码：</p>
+    <pre><code name="code" class="html">&lt;button id="delbtn" class="button small red"&gt;运行代码&lt;/button&gt;</code></pre>
+            <p>JavaScript 代码：</p>
+<pre><code name="code" class="js">/*
+ *
+ *  语法一 - $.Confirm(text,fn,[fn2]);
+ *
+ ** 参数配置：
+ *      text - {string}     要弹出的消息
+ *      fn   - {callback}   点击确认时的回调函数
+ *      fn2  - {callback}   点击取消时的回调函数
+ *
+*/
+    $("#delbtn").click(function(){
+        $.Confirm("您确定要执行删除操作吗？",function(){
+            $.Info("删除成功！","success",function(){
+                //  --
+            });
+        },function(){
+            $.Info("删除操作被取消！","warning",function(){
+                //  --
+            });
+        });
+    });</code></pre>
+            <h3>示例三</h3>
+            <p>弹出一个两秒后隐藏的消息框，有四种状态可供选择：info、success、warning、error。</p>
+            <p>
+                <button id="infobtn" class="button small">普通信息</button> &nbsp;
+                <button id="successbtn" class="button small green">成功提示</button> &nbsp;
+                <button id="warnbtn" class="button small yellow">警告提示</button> &nbsp;
+                <button id="errorbtn" class="button small red">错误提示</button>
+            </p>
+            <p>HTML 代码：</p>
+    <pre><code name="code" class="html">&lt;button id="infobtn" class="button small"&gt;普通信息&lt;/button&gt;
+    &lt;button id="successbtn" class="button small green"&gt;成功提示&lt;/button&gt;
+    &lt;button id="warnbtn" class="button small yellow"&gt;警告提示&lt;/button&gt;
+    &lt;button id="errorbtn" class="button small red"&gt;错误提示&lt;/button&gt;</code></pre>
+            <p>JavaScript 代码：</p>
+<pre><code name="code" class="js">/*
+ *
+ *  语法 - $.Info(text,[status],[fn]);
+ *
+ ** 参数配置：
+ *      text    - {string}  要弹出的消息
+ *      status  - {string}  消息框的状态，可选值为：success、warning、error
+ *      fn      - {callback}   消息框消失后的回调函数
+ *
+*/
+    $("#infobtn").click(function(){
+        $.Info("两秒后隐藏",function(){
+            $.Alert("这是两秒后的回调函数。");
+        });
+    })
+
+    $("#successbtn").click(function(){
+        $.Info("提交成功！","success",function(){
+            //  --
+        });
+    })
+
+    $("#warnbtn").click(function(){
+        $.Info("非法操作！","warning");
+    })
+
+    $("#errorbtn").click(function(){
+        $.Info("操作失败！","error");
+    })</code></pre>
+            <h3>示例四：自定义弹出框的内容</h3>
+            <p><button id="loginbtn" class="button small blue">去登录</button></p>
+            <p>HTML 代码：</p>
+<pre><code name="code" class="html"> &lt;!--
+ *
+ *  class="modal animate"  -   添加最外框样式和弹出效果动画
+ *
+ *  class="close"           -   绑定关闭弹窗事件
+ *
+ --&gt;
+
+    &lt;!--  这段是弹框的外层代码，必须包含有“modal animate”这两个类 --&gt;
+    &lt;div class="modal animate" id=""&gt;&lt;/div&gt;
+
+    &lt;!--  关闭弹框按钮的代码，还可以为弹框内其它元素添加 “close” 类，实现点击关闭功能 --&gt;
+    &lt;i class="fa fa-remove close"&gt;&lt;/i&gt;
+
+    &lt;!--  完整代码如下： --&gt;
+    &lt;div class="modal animate" id="LoginBox"&gt;&lt;i class="fa fa-remove close"&gt;&lt;/i&gt;
+        &lt;!-- 标题文字，你可以随意修改 --&gt;
+        &lt;div class="modal-header"&gt;登录&lt;/div&gt;
+        &lt;div class="content"&gt;
+            &lt;!-- 正文内容，以下可以替换成你的代码 --&gt;
+            &lt;div class="control"&gt;
+                &lt;span class="control-label"&gt;用户名：&lt;/span&gt;
+                &lt;div class="controls"&gt;&lt;input class="inline-span8" type="text" /&gt;&lt;/div&gt;
+            &lt;/div&gt;
+            &lt;div class="control"&gt;
+                &lt;span class="control-label"&gt;密码：&lt;/span&gt;
+                &lt;div class="controls"&gt;&lt;input class="inline-span8" type="password" /&gt;&lt;/div&gt;
+            &lt;/div&gt;
+            &lt;div class="control"&gt;
+                &lt;div class="controls"&gt;&lt;input type="checkbox" checked="" /&gt; 记住用户名和密码&lt;/div&gt;
+            &lt;/div&gt;
+            &lt;!-- 正文内容结束 --&gt;
+        &lt;/div&gt;
+        &lt;div class="actions"&gt;
+            &lt;!-- 操作按钮，按钮要添加"close"类，才能绑定关闭弹框事件 --&gt;
+            &lt;span class="button close"&gt;注册&lt;/span&gt;
+            &lt;span class="button green close"&gt;登录&lt;/span&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;</code></pre>
+            <p>JavaScript 代码：</p>
+<pre><code name="code" class="js">/*
+ *  $(selector).modal();
+ */
+
+$("#loginbtn").click(function(){
+    $("#LoginBox").modal();
+});</code></pre>
+        </section>
+    </div>
+
+    <!-- 登录弹出框 -->
+    <div class="modal animate" id="LoginBox"><span class="modal-close close">×</span>
+        <div class="modal-header">登录</div>
+        <div class="content">
+            <div class="control">
+                <span class="control-label">用户名：</span>
+                <div class="controls"><input class="inline-span8" type="text" /></div>
+            </div>
+            <div class="control">
+                <span class="control-label">密码：</span>
+                <div class="controls"><input class="inline-span8" type="password" /></div>
+            </div>
+            <div class="control">
+                <div class="controls"><input type="checkbox" checked="" /> 记住用户名和密码</div>
+            </div>
+        </div>
+        <div class="actions">
+            <span class="button close">注册</span>
+            <span class="button green close">登录</span>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script type="text/javascript" src="js/init.min.js"></script><!--jquery.min.js,dlhighlight-->
+    <script type="text/javascript" src="js/modal.js"></script>
+</body>
+
+</html>

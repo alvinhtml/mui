@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<!--
+    @ Chrome    43+
+    @ Firefox   40+
+    @ Opera     31+
+    @ Android   44+
+    @ Chrome for Android    44+
+-->
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+    <!-- External CSS -->
+    <link type="text/css" rel="stylesheet" href="css/miniui.min.css">
+    <link type="text/css" rel="stylesheet" href="css/font-awesome.min.css">
+    <link type="text/css" rel="stylesheet" href="css/simple-line-icons.css">
+
+	<style type="text/css">
+		body {
+			padding:0; margin: 0; background-color: #000;
+		}
+		.topology {
+			width: 100%; height: 880px; position: relative; background-color: #fff;
+		}
+		.tools {
+			background: #fff; padding:5px 15px;
+		}
+		.tools span {
+			display:inline-block; padding: 3px; margin-left: 5px; cursor: pointer;
+		}
+	</style>
+
+    <title>网络拓扑图</title>
+</head>
+
+<body>
+
+	<div class="tools text-right">
+		<span class="ebtn ititle" data-content="开始画线" style="color:#ddd;" id="TopoLink"></i><i class="fa fa-pencil"></i></span>
+        <span class="ebtn ititle" data-content="保存成图片" id="TopoImage"><i class="fa fa-image"></i></span>
+	</div>
+	<div class="topology" id="myTopo"></div>
+
+    <!-- JavaScript -->
+    <script type="text/javascript" src="js/init.min.js"></script><!--jquery.min.js,dlhighlight-->
+    <script type="text/javascript" src="js/topology.js"></script>
+</body>
+
+</html>

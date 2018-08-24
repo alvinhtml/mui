@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<!--
+    @ Chrome    43+
+    @ Firefox   40+
+    @ Opera     31+
+    @ Android   44+
+    @ Chrome for Android    44+
+-->
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+    <!-- External CSS -->
+    <link type="text/css" rel="stylesheet" href="css/miniui.min.css">
+    <link type="text/css" rel="stylesheet" href="css/font-awesome.min.css">
+    <link type="text/css" rel="stylesheet" href="css/simple-line-icons.css">
+
+    <title>DatePicker - 日期时间选择器</title>
+</head>
+
+<body>
+
+    <div class="layout center">
+        <header>
+            <h1>DatePicker - 日期时间选择器</h1>
+            <p>DatePicker 是一个用于日期时间选择的JQuery插件，可以选择年月日和时间，内置中英两套模板，兼容主流的HTML5现代浏览器及IE8以上版本。本插件压缩后只有几kb,且使用方便。</p>
+        </header>
+
+        <section class="section">
+        <h2 class="section-head"><strong>DatePicker - 文件引入方法</strong></h2>
+        <h3>方法一</h3>
+        <p>直接引入三个文件，datepicker.css、jquery.js、datepicker.js</p>
+<pre><code name="code" class="html">&lt;!--  步骤一：在 head 中引入 datepicker.css --&gt;
+&lt;link type="text/css" rel="stylesheet" href="datepicker.css"&gt;
+
+&lt;!--  步骤二：引入 JQuery --&gt;
+&lt;script type="text/javascript" src="jquery.js"&gt;&lt;/script&gt;
+
+&lt;!--  步骤二：引入 datepicker.js，确保JQuery在此之前已经引入 --&gt;
+&lt;script type="text/javascript" src="datepicker.js"&gt;&lt;/script&gt;</code></pre>
+        <h3>方法二</h3>
+        <p>使用 requareJS 加载，如果您的项目应用了 requareJS，建议使用此方法加载</p>
+<pre><code name="code" class="js">//配置路径
+require.config({
+    paths: {
+        jquery  :   'jquery.min',
+        datepicker  :   'datepicker'
+    }
+});
+
+//按照依赖关系加载 datepicker
+require(['jquery','datepicker'],function($,datepicker){
+    //  --
+})</code></pre>
+    </section>
+
+
+    <section class="section">
+        <h2 class="section-head"><strong>DatePicker - 使用方法</strong></h2>
+        <h3>只选择日期</h3>
+        <div class="input-append date-group inline-span4">
+            <input type="text" id="dateYear" placeholder="2015-01-01" value="" />
+            <span class="add-on date-button"><i class="fa fa-calendar"></i></span>
+        </div>
+        <p>HTML 代码：</p>
+    <pre><code name="code" class="html">&lt;input type="text" id="dateYear" placeholder="2015-01-01" value="" /&gt;</code></pre>
+        <p>JavaScript 代码：</p>
+    <pre><code name="code" class="js">$("#dateYear").datepicker();</code></pre>
+        <h3>选择日期和时间</h3>
+        <div class="input-append date-group inline-span4">
+            <input type="text" data-lang="en-us" class="inline-span4" id="date" placeholder="" value="" />
+            <span class="add-on date-button"><i class="fa fa-clock-o"></i></span>
+        </div>
+        <p>HTML 代码：</p>
+    <pre><code name="code" class="html">&lt;input type="text" data-lang="en-us" id="date" placeholder="" value="" /&gt;</code></pre>
+        <p>JavaScript 代码：</p>
+<pre><code name="code" class="js">/*
+ *@ 插件名称：datepicker
+ *@ 语法 - $(inputSelector).datepicker(time,callback);
+ *@ 参数配置：
+ *      time -  布尔型，默认只选定日期， time 为 ture 时，选定日期和时间;
+ *      callback -  选择时期时间后的回调函数
+ *@ 属性配置
+ *      Input data-lang 属性， 可选，定义模板语言，默认为中文
+ *          data-lang = "zh-cn" -   中文
+ *          data-lang = "en-us" -   英文
+*/
+$("#date").datepicker(true,"en-us",function(date){
+    alert("选定时间是：" + date);
+});</code></pre>
+        <h3>传入初始时间</h3>
+        <div class="input-append date-group inline-span4">
+            <input class="inline-span4 mydate" type="text" placeholder="2015-01-01 00:00:00" value="2015-04-23 17:22:57" />
+            <span class="add-on date-button"><i class="fa fa-clock-o"></i></span>
+        </div>  至
+        <div class="input-append date-group inline-span4" style="margin-left: 0;">
+            <input class="inline-span4 mydate" type="text" placeholder="2015-01-01 00:00:00" value="2015-04-23 17:22:57" />
+            <span class="add-on date-button"><i class="fa fa-clock-o"></i></span>
+        </div>
+        <p>HTML 代码：</p>
+<pre><code name="code" class="html">&lt;input class="mydate" type="text" placeholder="2015-01-01 00:00:00" value="2015-04-23 17:22:57"  /&gt;
+&lt;input class="mydate" type="text" placeholder="2015-01-01 00:00:00" value=""  /&gt;</code></pre>
+        <p>JavaScript 代码：</p>
+    <pre><code name="code" class="js">$(".mydate").datepicker(true);</code></pre>
+    </section>
+    </div>
+
+    <!-- JavaScript -->
+    <script type="text/javascript" src="js/init.min.js"></script><!--jquery.min.js,dlhighlight-->
+    <script type="text/javascript" src="js/datepicker.js"></script>
+</body>
+
+</html>

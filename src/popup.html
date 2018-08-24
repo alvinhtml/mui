@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<!--
+    @ Chrome    43+
+    @ Firefox   40+
+    @ Opera     31+
+    @ Android   44+
+    @ Chrome for Android    44+
+-->
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+    <!-- External CSS -->
+    <link type="text/css" rel="stylesheet" href="css/miniui.min.css">
+    <link type="text/css" rel="stylesheet" href="css/font-awesome.min.css">
+    <link type="text/css" rel="stylesheet" href="css/simple-line-icons.css">
+
+    <title>modal - 模拟弹出窗口</title>
+</head>
+
+<body>
+
+    <div class="layout center">
+        <header>
+            <h1>Popup - 弹出消息框</h1>
+            <p>Popup - 弹出消息框是一个JQuery插件，可以用来代替 DOM 的 title 属性。</p>
+        </header>
+        <section class="section">
+            <h2 class="section-head">Popup - 文件引入方法</h2>
+            <h3>方法一</h3>
+            <p>直接引入三个文件，popup.css、jquery.js、popup.js</p>
+        <pre><code name="code" class="html">&lt;!--  步骤一：在 head 中引入 popup.css --&gt;
+&lt;link type="text/css" rel="stylesheet" href="popup.css"&gt;
+
+&lt;!--  步骤二：引入 JQuery --&gt;
+&lt;script type="text/javascript" src="jquery.js"&gt;&lt;/script&gt;
+
+&lt;!--  步骤三：引入 popup.js，确保JQuery在此之前已经引入 --&gt;
+&lt;script type="text/javascript" src="popup.js"&gt;&lt;/script&gt;</code></pre>
+            <h3>方法二</h3>
+            <p>使用 requareJS 加载，如果您的项目应用了 requareJS，建议使用此方法加载</p>
+<pre><code name="code" class="js">//  配置路径
+require.config({
+    paths: {
+        jquery  :   'jquery.min',
+        popup  :   'popup'
+    }
+});
+
+//  按照依赖关系加载 popup
+require(['jquery','popup'],function($,popup){
+    //  --
+})</code></pre>
+        </section>
+        <section class="section">
+            <h2 class="section-head">popup - 使用方法</h2>
+            <h3>示例一</h3>
+            <p>请将鼠标移到<abbr class="ititle" data-content="这是一个示例">示例</abbr>上面查看更多信息。</p>
+            <p>HTML 代码：</p>
+            <pre><code name="code" class="html">&lt;abbr class="ititle" data-content="这是一个示例"/&gt;示例&lt;/abbr/&gt;</code></pre>
+            <p>JavaScript 代码：</p>
+            <pre><code name="code" class="js">$(".ititle").popup();</code></pre>
+            <h3>示例二</h3>
+            <p>
+                <button class="button small blue ititle-top" data-content="向上弹出">上</button>
+                <button class="button small blue ititle-right" data-style="popup-white" data-content="向右弹出">右</button>
+                <button class="button small blue ititle-bottom" data-style="popup-yellow" data-content="向下弹出">下</button>
+                <button class="button small blue ititle-left" data-style="popup-red" data-content="向左弹出">左</button>
+            </p>
+            <p>HTML 代码：</p>
+        <pre><code name="code" class="html">&lt;button class="ititle-top" data-content="向上弹出"&gt;上&lt;/button&gt;
+
+&lt;button class="ititle-right" data-content="向右弹出"&gt;右&lt;/button&gt;
+
+&lt;button class="ititle-bottom" data-content="向下弹出"&gt;下&lt;/button&gt;
+
+&lt;button class="ititle-left" data-content="向左弹出"&gt;左&lt;/button&gt;</code></pre>
+            <p>JavaScript 代码：</p>
+<pre><code name="code" class="js">/*
+ ** 插件名称：popup
+ *
+ *  语法一 - $(selector).popup([position]);
+ *
+ ** 参数配置：
+ *      position -  弹出消息框的位置，默认为自动计算，可选值为：left,right,top,bottom;
+ *
+ *  语法二 - $(selector).popup([fn]);
+ *
+ ** 参数配置：
+ *      fn - fn(title,content),接收title和content参数，return一个DOM字符串。
+ *
+ *  语法三 - $(selector).popup([position],[fn]);
+ *
+ ** 属性配置：
+ *      element data-title   属性 -   消息标题,非必写，可以省略
+ *      element data-content 属性 -   消息内容
+ *      element data-style   属性 -   消息框自定义样式名称,非必写，可以省略
+ *
+*/
+    $(".ititle-top").popup("top");
+    $(".ititle-right").popup("right");
+    $(".ititle-bottom").popup("bottom");
+    $(".ititle-left").popup("left");</code></pre>
+            <h3>示例三</h3>
+            <p>带有<abbr class="ititle" data-title="示例三" data-content="这是第三个示例，带有标题的消息提示框。">标题</abbr>的消息提示框。</p>
+            <p>HTML 代码：</p>
+    <pre><code name="code" class="html">&lt;abbr class="ititle" data-title="示例三" data-content="这是第三个示例，带有标题的消息提示框。"&gt;标题&lt;/abbr&gt;</code></pre>
+            <p>JavaScript 代码：</p>
+    <pre><code name="code" class="js">$(".ititle").popup(true);</code></pre>
+            <h3>示例四</h3>
+            <p>改变消息框的默认样式。Popup提供了四种样式，默认为黑色，可选的分别为：<abbr class="ititle" data-style="popup-white" data-content="白色弹出消息框">popup-white</abbr>、<abbr class="ititle" data-style="popup-yellow" data-content="黄色弹出消息框">popup-yellow</abbr>、<abbr class="ititle" data-style="popup-red" data-content="红色弹出消息框">popup-red</abbr></p>
+            <p>HTML 代码：</p>
+<pre><code name="code" class="html">&lt;abbr class="ititle" data-style="popup-white" data-content="白色弹出消息框"&gt;popup-white&lt;/abbr&gt;
+
+    &lt;abbr class="ititle" data-style="popup-yellow" data-content="黄色弹出消息框"&gt;popup-yellow&lt;/abbr&gt;
+
+    &lt;abbr class="ititle" data-style="popup-red" data-content="红色弹出消息框"&gt;popup-red&lt;/abbr&gt;</code></pre>
+        <p>JavaScript 代码：</p>
+<pre><code name="code" class="js">$(".ititle").popup();</code></pre>
+            <h3>示例五</h3>
+            <p>自定义消息框的样式。</p>
+            <p><abbr id="warning" data-style="popup-yellow" data-title="警告信息" data-content="Popup - 弹出消息框是一个JQuery插件，可以用来代替 DOM 的 title 属性。">警告信息</abbr></p>
+            <p><abbr id="error" data-style="popup-red" data-title="错误信息" data-content="Popup - 弹出消息框是一个JQuery插件，可以用来代替 DOM 的 title 属性。">错误信息</abbr></p>
+            <p>HTML 代码：</p>
+<pre><code name="code" class="html">&lt;abbr id="warning" data-style="popup-yellow" data-title="警告信息" data-content="Popup - 弹出消息框是一个JQuery插件，可以用来代替 DOM 的 title 属性。"&gt;警告信息&lt;/abbr&gt;
+
+&lt;abbr id="error" data-style="popup-red" data-title="错误信息" data-content="Popup - 弹出消息框是一个JQuery插件，可以用来代替 DOM 的 title 属性。"&gt;错误信息&lt;/abbr&gt;</code></pre>
+            <p>JavaScript 代码：</p>
+<pre><code name="code" class="js">$("#warning").popup(function(title,content){
+    return '&lt;div class="header"&gt;&lt;i class="fa fa-exclamation-circle"&gt;&lt;/i&gt;&nbsp; '+ title +'&lt;/div&gt;&lt;p style="padding-left:1.5em;"&gt;' + content + '&lt;/p&gt;';
+});
+
+$("#error").popup(function(title,content){
+    return '&lt;div class="header"&gt;&lt;i class="fa fa-exclamation-circle"&gt;&lt;/i&gt;&nbsp; '+ title +'&lt;/div&gt;&lt;p style="padding-left:1.5em;"&gt;' + content + '&lt;/p&gt;';
+});</code></pre>
+        </section>
+    </div>
+
+    <!-- JavaScript -->
+    <script type="text/javascript" src="js/init.min.js"></script><!--jquery.min.js,dlhighlight-->
+    <script type="text/javascript" src="js/popup.js"></script>
+    <script type="text/javascript">
+
+    </script>
+</body>
+
+</html>

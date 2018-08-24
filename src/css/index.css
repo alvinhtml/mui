@@ -1,0 +1,100 @@
+/*!
+ *  Alvin.Gang
+ *  http://www.alvinhtml.com/
+ *  Copyright 2017, Alvin.Yang
+ */
+
+ a:hover {
+
+ }
+ a:active {
+   color: @blue-steel;
+ }
+
+
+
+.screen-image {
+    width: 100%;
+    position: relative;
+    background-color: #000;
+}
+.screen-image::before {
+    background: url(../images/background.jpg) center top repeat;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    content: '';
+    background-size: cover;
+    opacity: 0.45;
+}
+
+header {
+    margin: 0;
+    position: relative;
+    padding: 5% 0;
+    z-index: 2;
+}
+
+
+ h1 {
+    font-size:68px;
+    font-weight: bold;
+    cursor: pointer;
+    text-shadow: 0 1px 0 hsl(174,5%,80%), 0 0 5px rgba(0,0,0,.05),  0 3px 5px rgba(0,0,0,.2);
+    margin: 120px;
+    font-family: optima;
+ }
+
+ .address {
+     display: none;
+     text-align: center;
+ }
+
+.note-list>.col-span3 {
+    margin-bottom: 2.5641%;
+}
+.note-list>.col-span3:nth-child(4n+1) {
+    margin-left: 0;
+}
+
+.note-list>.col-span3:hover {
+
+}
+
+.note-list h3 { margin: 0; }
+.note-list a {
+    display: block;
+}
+.note-list .col-span3 {
+    margin-bottom: 60px;
+    box-sizing: border-box;
+    border:1px solid #fff;
+}
+.note-list .col-span3:hover {
+    background-color: rgba(0,0,0,.05);
+}
+
+.note-list strong {
+    display: block;
+    padding: 12px 0 6px;
+    font-size: 28px;
+    line-height: 1.2em;
+    color: #666;
+    text-align: center;
+    font-family: optima, Impact, Charcoal, sans-serif;
+    text-shadow: 0 1px 0 hsl(174,5%,80%), 0 0 5px rgba(0,0,0,.05),  0 3px 5px rgba(0,0,0,.2);
+}
+
+.note-list strong:hover {
+    text-shadow: 0 1px 0 hsl(174,5%,80%), 0 0 5px rgba(0,0,0,.05),  0 3px 5px rgba(0,0,0,.2);
+}
+.note-list small {
+    display: block;
+    padding: 12px;
+    text-align: center;
+    font-size: 12px;
+    line-height: 2em;
+    color: #333;
+}
